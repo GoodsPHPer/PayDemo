@@ -1,0 +1,31 @@
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_no` char(32) NOT NULL,
+  `out_trade_no` varchar(45) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `item_num` int(11) NOT NULL,
+  `item_type` varchar(45) NOT NULL,
+  `fee` float NOT NULL,
+  `pay_fee` float NOT NULL,
+  `order_status` tinyint(1) NOT NULL DEFAULT '0',
+  `pay_time` datetime DEFAULT NULL,
+  `pay_type` varchar(10) DEFAULT NULL,
+  `pay_status` varchar(15) NOT NULL DEFAULT 'wait_pay',
+  `source` varchar(15) NOT NULL,
+  `comm` text,
+  `create_time` datetime NOT NULL,
+  `pay_confirm_source` varchar(30) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
+
+  
+CREATE TABLE `orders_notify_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(1000) NOT NULL,
+  `pay_type` varchar(20) NOT NULL,
+  `out_no` varchar(45) NOT NULL,
+  `source` varchar(45) DEFAULT NULL COMMENT '鉴别是前台同步跳转还是后台通知',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8
